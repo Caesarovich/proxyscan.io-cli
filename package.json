@@ -1,0 +1,19 @@
+{
+  "name": "proxyscan.io-cli",
+  "version": "1.0.0",
+  "description": "A command line tool to fetch a list of available proxies within your terminal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "proxy",
+    "proxyscan.io",
+    "api-wrapper",
+    "proxy-list",
+    "api"
+  ],
+  "author": "Caesarovich",
+  "license": "MIT"
+}
