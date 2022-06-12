@@ -1,28 +1,32 @@
 {
-  "name": "proxyscan.io-cli",
-  "version": "1.0.0",
-  "type": "module",
-  "description": "A command line tool to fetch a list of available proxies within your terminal",
-  "main": "dist/index.js",
-  "scripts": {
-    "build": "tsc",
-    "rebuild": "npm run clean && npm run build",
-    "clean": "rm -rf dist",
-    "test": "npm run rebuild && node ."
-  },
-  "keywords": [
-    "cli",
-    "proxy",
-    "proxyscan.io",
-    "api-wrapper",
-    "proxy-list",
-    "api"
-  ],
-  "author": "Caesarovich",
-  "license": "MIT",
-  "dependencies": {
-    "meow": "^10.1.2",
-    "proxyscan.io": "^1.0.3",
-    "typescript": "^4.7.2"
-  }
+	"name": "proxyscan.io-cli",
+	"version": "1.0.0",
+	"type": "module",
+	"description": "A command line tool to fetch a list of available proxies within your terminal",
+	"main": "dist/index.js",
+	"scripts": {
+		"build": "tsc",
+		"rebuild": "npm run clean && npm run build",
+		"clean": "",
+		"test": "npm run rebuild && node ."
+	},
+	"keywords": [
+		"cli",
+		"proxy",
+		"proxyscan.io",
+		"api-wrapper",
+		"proxy-list",
+		"api"
+	],
+	"author": "Caesarovich",
+	"license": "MIT",
+	"dependencies": {
+		"meow": "^10.1.2",
+		"ora": "^6.1.0",
+		"proxyscan.io": "^1.0.5"
+	},
+	"devDependencies": {
+		"tslib": "^2.4.0",
+		"typescript": "^4.7.2"
+	}
 }
