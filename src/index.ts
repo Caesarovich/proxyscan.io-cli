@@ -3,7 +3,7 @@ import ora from 'ora';
 import { flags, ParsedFlags, parseFlags } from './flags.js';
 
 import { fetchProxies } from 'proxyscan.io';
-import { makeOutput } from './output.js';
+import { showResult } from './output.js';
 
 const spinner = ora();
 
@@ -55,9 +55,14 @@ const cli = meow(
 
 async function main(parsedFlags: ParsedFlags): Promise<void> {
 	spinner.start();
-	const proxies = await fetchProxies(parsedFlags);
-	spinner.stop();
-	console.log(makeOutput(proxies));
+	try {
+		const proxies = await fetchProxies(parsedFlags);
+		spinner.stop();
+		showResult(proxies, parsedFlags);
+	} catch (err) {
+		spinner.stop();
+		console.error(err);
+	}
 }
 
 main(parseFlags(cli.flags));
