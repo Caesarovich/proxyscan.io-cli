@@ -4,6 +4,10 @@
 	"type": "module",
 	"description": "A command line tool to fetch a list of available proxies within your terminal",
 	"main": "dist/index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Caesarovich/proxyscan.io-cli/"
+	},
 	"bin": {
 		"proxyscan": "./dist/index.js"
 	},
