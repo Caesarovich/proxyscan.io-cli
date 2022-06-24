@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import meow from 'meow';
 import ora from 'ora';
 import { flags, ParsedFlags, parseFlags } from './flags.js';

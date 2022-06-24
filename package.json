@@ -4,6 +4,12 @@
 	"type": "module",
 	"description": "A command line tool to fetch a list of available proxies within your terminal",
 	"main": "dist/index.js",
+	"bin": {
+		"proxyscan": "./dist/index.js"
+	},
+	"engines": {
+		"node": "^14.13.1 || >=16.0.0"
+	},
 	"scripts": {
 		"build": "tsc",
 		"rebuild": "npm run clean && npm run build",
