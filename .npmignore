@@ -1,0 +1,9 @@
+# Ignore the source directory
+src
+
+# Ignore NPM packages
+*.tgz
+
+# Ignore configs
+tsconfig.json
+.prettierrc
