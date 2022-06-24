@@ -13,7 +13,7 @@
 	"scripts": {
 		"build": "tsc",
 		"rebuild": "npm run clean && npm run build",
-		"clean": "",
+		"clean": "rm -rf dist",
 		"test": "npm run rebuild && node ."
 	},
 	"keywords": [
