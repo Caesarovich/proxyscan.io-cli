@@ -4,7 +4,8 @@ export function makeOutput(proxies: Proxy[]): string {
 	let output = '';
 
 	for (let proxy of proxies) {
-		output += `${proxy.Ip}:${proxy.Port} ${proxy.Type} ${proxy.Ping}ms ${proxy.Anonymity}\n`;
+		output += `${proxy.ip}:${proxy.port} ${proxy.types} `;
+		output += `${proxy.ping}ms ${proxy.anonymity}\n`;
 	}
 
 	return output;

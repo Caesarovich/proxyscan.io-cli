@@ -23,7 +23,7 @@
 	"dependencies": {
 		"meow": "^10.1.2",
 		"ora": "^6.1.0",
-		"proxyscan.io": "^1.0.5"
+		"proxyscan.io": "^2.1.1"
 	},
 	"devDependencies": {
 		"tslib": "^2.4.0",

@@ -24,6 +24,12 @@ export const flags: AnyFlags = {
 	uptime: {
 		type: 'number',
 	},
+	countries: {
+		type: 'string',
+	},
+	avoidCountries: {
+		type: 'string',
+	},
 };
 
 export interface ParsedFlags {
@@ -33,6 +39,8 @@ export interface ParsedFlags {
 	port?: FetchOptions['port'];
 	ping?: FetchOptions['ping'];
 	uptime?: FetchOptions['uptime'];
+	countries?: FetchOptions['countries'];
+	avoidCountries?: FetchOptions['avoidCountries'];
 }
 
 function isAnonymityLevel(flag?: unknown): flag is FetchOptions['level'] {
@@ -54,6 +62,10 @@ export function parseFlags(inputFlags: TypedFlags<AnyFlags>): ParsedFlags {
 	if (typeof inputFlags.port === 'number') parsedFlags.port = inputFlags.port;
 	if (typeof inputFlags.ping === 'number') parsedFlags.ping = inputFlags.ping;
 	if (typeof inputFlags.uptime === 'number') parsedFlags.uptime = inputFlags.uptime;
+	if (typeof inputFlags.countries === 'string')
+		parsedFlags.countries = inputFlags.countries.split(',');
+	if (typeof inputFlags.avoidCountries === 'string')
+		parsedFlags.avoidCountries = inputFlags.avoidCountries.split(',');
 
 	return parsedFlags;
 }

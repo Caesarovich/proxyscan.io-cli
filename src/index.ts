@@ -10,33 +10,42 @@ const spinner = ora();
 const cli = meow(
 	`
 	Usage
-	  $ proxyscan <input>
+		$ proxyscan <input>
 
 	Options
-	  
 
-	  --limit, -l {number, 1-50}
-	  		Specify the amount of proxies to fetch.
+	--limit, -l {number, 1-50}
+		Specify the amount of proxies to fetch.
 
-	  --type, -t [http | https | socks4 | socks5]
-	  		Specify the proxy protocol.
+	--type, -t [http | https | socks4 | socks5]
+		Specify the proxy protocol.
 
-	  --ping, -p {number, 10-30000}
-			Specify the maximum desired latency.
+	--ping, -p {number, 10-30000}
+		Specify the maximum desired latency.
 
-	  --level [transparent | anonymous | elite]
-			Specify anonymity level for the proxies.
+	--level [transparent | anonymous | elite]
+		Specify anonymity level for the proxies.
 
-	  --port {number, 1-65535}
-	  		Specify a specific port number.
-			
-	  --uptime {number, 1-100}
-	  		Specify uptime reliability in percentage.
+	--port {number, 1-65535}
+		Specify a specific port number.
+
+	--uptime {number, 1-100}
+		Specify uptime reliability in percentage.
+
+	--countries (Country codes separated by commas)
+		The countries the proxies must be located into.
+
+		Example: --countries us,en,ru
+
+	--avoid-countries (Country codes separated by commas)
+		The countries the proxies must NOT be located into.
+
+		Example: --countries cn,pl,hk
 
 	Examples
-	  $ proxyscan -l 15
-	  $ proxyscan -t elite
-	  
+		$ proxyscan --limit 15
+		$ proxyscan --level elite
+		$ proxyscan --ping 200
 `,
 	{
 		importMeta: import.meta,
