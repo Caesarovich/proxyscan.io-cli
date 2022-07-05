@@ -6,6 +6,9 @@ import { flags, ParsedFlags, parseFlags } from './flags.js';
 
 import { fetchProxies } from 'proxyscan.io';
 import { showResult } from './output.js';
+import { checkUpdate } from './update.js';
+
+checkUpdate();
 
 const spinner = ora();
 

@@ -35,9 +35,12 @@
 		"meow": "^10.1.2",
 		"ora": "^6.1.0",
 		"proxyscan.io": "^2.1.1",
-		"tslib": "^2.4.0"
+		"tslib": "^2.4.0",
+		"update-notifier": "^6.0.2"
 	},
 	"devDependencies": {
+		"@types/node": "^18.0.1",
+		"@types/update-notifier": "^6.0.0",
 		"typescript": "^4.7.2"
 	}
 }
