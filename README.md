@@ -69,7 +69,15 @@ Usage
 
 		Example: --countries cn,pl,hk
 
-	Examples
+  --request-timeout {number, milliseconds}
+		Milliseconds to wait for the response before aborting.
+
+  --request-retries {number}
+		Maximum retry attempts when failing to fetch proxies.
+
+		Default: 2
+
+  Examples
 		$ proxyscan --limit 15
 		$ proxyscan --level elite
 		$ proxyscan --ping 200
