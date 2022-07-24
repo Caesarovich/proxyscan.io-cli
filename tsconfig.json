@@ -7,9 +7,6 @@
 		"target": "ESNext",
 		"moduleResolution": "Node",
 		"noImplicitOverride": true,
-		"declaration": true,
-		"declarationMap": true,
-		"importHelpers": true,
 		"incremental": true,
 		"newLine": "lf",
 		"noEmitHelpers": true,
@@ -20,9 +17,7 @@
 		"noImplicitAny": true,
 		"noUncheckedIndexedAccess": true,
 		"preserveConstEnums": true,
-		"pretty": true,
-		"removeComments": false,
-		"sourceMap": true
+		"pretty": true
 	},
 	"include": ["src/**/*"]
 }
