@@ -1,6 +1,6 @@
 {
 	"name": "proxyscan.io-cli",
-	"version": "1.0.2",
+	"version": "1.1.0",
 	"type": "module",
 	"description": "A command line tool to fetch a list of available proxies within your terminal",
 	"main": "dist/index.js",
