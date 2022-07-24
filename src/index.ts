@@ -1,16 +1,15 @@
 #!/usr/bin/env node
 
-import meow from 'meow';
-import ora from 'ora';
+import { fetchProxies, Proxy } from 'proxyscan.io';
+import meow, { AnyFlags, TypedFlags } from 'meow';
+import ora, { Ora } from 'ora';
+
 import { flags, ParsedFlags, parseFlags } from './flags.js';
-
-import { fetchProxies } from 'proxyscan.io';
-import { showResult } from './output.js';
-import { checkUpdate } from './update.js';
-
-checkUpdate();
-
-const spinner = ora();
+import { showResults } from './output.js';
+import { checkUpdates } from './update.js';
+import { handleFetchError } from './errors.js';
+import { exit } from 'process';
+import chalk from 'chalk';
 
 const cli = meow(
 	`
@@ -21,6 +20,8 @@ const cli = meow(
 
 	--limit, -l {number, 1-50}
 		Specify the amount of proxies to fetch.
+
+		Default: 5
 
 	--type, -t [http | https | socks4 | socks5]
 		Specify the proxy protocol.
@@ -47,6 +48,15 @@ const cli = meow(
 
 		Example: --countries cn,pl,hk
 
+	--request-timeout {number, milliseconds}
+		Milliseconds to wait for the response before aborting.
+
+	--request-retries {number}
+		Maximum retry attempts when failing to fetch proxies.
+
+		Default: 2
+
+
 	Examples
 		$ proxyscan --limit 15
 		$ proxyscan --level elite
@@ -58,16 +68,43 @@ const cli = meow(
 	}
 );
 
-async function main(parsedFlags: ParsedFlags): Promise<void> {
-	spinner.start();
+let fetchRetries = 1;
+
+async function fetch(parsedFlags: ParsedFlags, spinner: Ora): Promise<void> {
 	try {
-		const proxies = await fetchProxies(parsedFlags);
-		spinner.stop();
-		showResult(proxies, parsedFlags);
+		const proxies = await fetchProxies(parsedFlags, {
+			timeout: parsedFlags.requestTimeout ?? 5000,
+		});
+		handleResults(proxies, spinner, parsedFlags);
 	} catch (err) {
-		spinner.stop();
-		console.error(err);
+		handleFetchError(err, spinner);
+		fetchRetries--;
+		if (fetchRetries > 0) {
+			fetch(parsedFlags, spinner);
+		} else {
+			spinner.fail(chalk.red.underline('Failed to fetch proxies through the API'));
+			exit(1);
+		}
 	}
 }
 
-main(parseFlags(cli.flags));
+function handleResults(proxies: Proxy[], spinner: Ora, flags: ParsedFlags): void {
+	spinner.stop();
+	showResults(proxies, flags);
+}
+
+async function main(flags: TypedFlags<AnyFlags>): Promise<void> {
+	checkUpdates();
+
+	const parsedFlags = parseFlags(flags);
+
+	if (parsedFlags.requestRetries) fetchRetries = parsedFlags.requestRetries;
+
+	const spinner = ora();
+
+	spinner.start('Fetching proxies...');
+
+	fetch(parsedFlags, spinner);
+}
+
+main(cli.flags);

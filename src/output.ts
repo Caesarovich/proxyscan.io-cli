@@ -15,7 +15,7 @@ function noResult(flags: ParsedFlags): void {
 	process.exit(2);
 }
 
-export function showResult(proxies: Proxy[], flags: ParsedFlags): void {
+export function showResults(proxies: Proxy[], flags: ParsedFlags): void {
 	if (proxies.length === 0) return noResult(flags);
 
 	let output = '';

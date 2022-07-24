@@ -34,7 +34,7 @@
 		"chalk": "^5.0.1",
 		"meow": "^10.1.2",
 		"ora": "^6.1.0",
-		"proxyscan.io": "^2.1.1",
+		"proxyscan.io": "^2.2.0",
 		"tslib": "^2.4.0",
 		"update-notifier": "^6.0.2"
 	},

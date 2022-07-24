@@ -3,7 +3,7 @@ import * as path from 'path';
 import { readFile } from 'fs';
 import updateNotifier from 'update-notifier';
 
-export function checkUpdate() {
+export function checkUpdates() {
 	const __filename = fileURLToPath(import.meta.url);
 	const __dirname = path.dirname(__filename);
 

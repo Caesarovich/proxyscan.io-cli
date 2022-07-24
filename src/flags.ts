@@ -1,5 +1,5 @@
 import type { AnyFlags, TypedFlags } from 'meow';
-import type { FetchOptions } from 'proxyscan.io';
+import type { ProxyOptions } from 'proxyscan.io';
 
 export const flags: AnyFlags = {
 	level: {
@@ -30,25 +30,35 @@ export const flags: AnyFlags = {
 	avoidCountries: {
 		type: 'string',
 	},
+	requestTimeout: {
+		type: 'number',
+		default: 5000,
+	},
+	requestRetries: {
+		type: 'number',
+		default: 2,
+	},
 };
 
 export interface ParsedFlags {
-	level?: FetchOptions['level'];
-	limit?: FetchOptions['limit'];
-	type?: FetchOptions['type'];
-	port?: FetchOptions['port'];
-	ping?: FetchOptions['ping'];
-	uptime?: FetchOptions['uptime'];
-	countries?: FetchOptions['countries'];
-	avoidCountries?: FetchOptions['avoidCountries'];
+	level?: ProxyOptions['level'];
+	limit?: ProxyOptions['limit'];
+	type?: ProxyOptions['type'];
+	port?: ProxyOptions['port'];
+	ping?: ProxyOptions['ping'];
+	uptime?: ProxyOptions['uptime'];
+	countries?: ProxyOptions['countries'];
+	avoidCountries?: ProxyOptions['avoidCountries'];
+	requestTimeout?: number;
+	requestRetries?: number;
 }
 
-function isAnonymityLevel(flag?: unknown): flag is FetchOptions['level'] {
+function isAnonymityLevel(flag?: unknown): flag is ProxyOptions['level'] {
 	if (!flag || typeof flag !== 'string') return false;
 	return flag === 'transparent' || flag === 'anonymous' || flag === 'elite';
 }
 
-function isProxyType(flag?: unknown): flag is FetchOptions['type'] {
+function isProxyType(flag?: unknown): flag is ProxyOptions['type'] {
 	if (!flag || typeof flag !== 'string') return false;
 	return flag === 'http' || flag === 'https' || flag === 'socks4' || flag === 'socks5';
 }
@@ -66,6 +76,12 @@ export function parseFlags(inputFlags: TypedFlags<AnyFlags>): ParsedFlags {
 		parsedFlags.countries = inputFlags.countries.split(',');
 	if (typeof inputFlags.avoidCountries === 'string')
 		parsedFlags.avoidCountries = inputFlags.avoidCountries.split(',');
+
+	if (typeof inputFlags.requestTimeout === 'number')
+		parsedFlags.requestTimeout = inputFlags.requestTimeout;
+
+	if (typeof inputFlags.requestRetries === 'number')
+		parsedFlags.requestRetries = inputFlags.requestRetries;
 
 	return parsedFlags;
 }
