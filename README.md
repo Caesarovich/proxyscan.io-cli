@@ -1,4 +1,6 @@
-![Logo](https://www.proxyscan.io/images/logo.png)
+# ⚠️ Discontinued
+
+The site proxyscan.io no longer exists, therefore this library no longer works.
 
 # proxyscan.io-cli
 
